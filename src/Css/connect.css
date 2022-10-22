@@ -1,0 +1,13 @@
+.contentMessagerie {
+    background-color: rgba(0, 75, 225, 1);
+    width: 80%;
+    margin-left: 20%;
+    height: 8%;
+    display: flex;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.contentMessagerie > h1 {
+    margin-left: 10%;
+}
