@@ -1,57 +1,55 @@
 .shadow {
-    box-shadow: rgba(65, 64, 64, 0.7) 0px 4px 6px -1px,
-        #2e2e2eb3 0px 2px 4px -1px;
+  box-shadow: rgba(65, 64, 64, 0.7) 0px 4px 6px -1px, #2e2e2eb3 0px 2px 4px -1px;
 }
 
 .navigation {
-    height: 6vh;
-    width: 100%;
-    background-color: white;
-    border-radius: 15px;
-    margin-bottom: 5%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 5%;
-    box-sizing: border-box;
+  height: 6vh;
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 5%;
+  box-sizing: border-box;
 }
 
-.serch_input{
-background-color: white;
-width: 20em;
+.serch_input {
+  background-color: white;
+  width: 20em;
 }
 .divImageTitre {
-    display: flex;
-    align-items: center;
-    gap: 5%;
-    border-bottom: 1px solid rgb(184, 184, 184);
-    width: 90%;
-    margin-left: 5%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  border-bottom: 1px solid rgb(184, 184, 184);
+  width: 90%;
+  margin-left: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 img {
-    width: 60px;
-    border-radius: 40px;
+  width: 60px;
+  border-radius: 40px;
 }
-
 
 .contenairNavig {
-    width: 25%;
+  width: 25%;
 }
 h4 {
-    color: rgb(84, 84, 84);
+  color: rgb(84, 84, 84);
 }
 .contentStyleImgH {
-    height: 60vh;
-    width: 100%;
-    background-color: white;
-    border-radius: 20px;
-    overflow-y: scroll;
+  height: 60vh;
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  overflow-y: scroll;
 }
 
-.contentStyleImgH::-webkit-scrollbar{
-    display: none;
+.contentStyleImgH::-webkit-scrollbar {
+  display: none;
 }
