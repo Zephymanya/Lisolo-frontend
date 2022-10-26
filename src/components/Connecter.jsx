@@ -1,5 +1,4 @@
 import React from "react";
-import user from "../images/user.png";
 import { BiLogOut } from "react-icons/bi";
 import { AiOutlineComment } from "react-icons/ai";
 import "../Css/connect.css";
@@ -25,7 +24,7 @@ export default function Connecter() {
       }}
     >
       <img
-        // src={userData.picture}
+        src={userData.picture}
         alt=""
         style={{
           width: "20% !important",

@@ -7,9 +7,7 @@ import dataContext from "../components/dataContext";
 import { useContext } from "react";
 
 export default function Chats() {
-  const { setUserData, userInfo } = useContext(dataContext);
-
-  // setUserData(JSON.parse(localStorage.getItem("userData")));
+  const { userInfo } = useContext(dataContext);
 
   return (
     <div className="shadow containtChat">

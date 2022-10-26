@@ -13,6 +13,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const { userData, setUserData } = useContext(dataContext);
 
   const login = (e) => {

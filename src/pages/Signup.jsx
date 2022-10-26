@@ -10,6 +10,7 @@ export default function Login() {
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [picture, setPicture] = useState("");
 
   const navigate = useNavigate();

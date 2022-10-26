@@ -6,7 +6,7 @@ import Signup from "./pages/Signup";
 import dataContext from "./components/dataContext";
 import { useState } from "react";
 
-import { BrowserRouter as Router, Routes, Route, json } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [userData, setUserData] = useState();
