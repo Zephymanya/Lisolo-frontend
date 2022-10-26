@@ -16,7 +16,7 @@ function App() {
     <div>
       <dataContext.Provider
         value={{
-          userData,
+          userData ,
           setUserData,
           userInfo,
           setUserInfo,
