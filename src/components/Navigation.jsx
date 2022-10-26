@@ -7,7 +7,7 @@ import dataContext from "./dataContext";
 import axios from "axios";
 
 export default function Navigation() {
-  const { userInfo, setUserInfo, setUserData } = useContext(dataContext);
+  const { userInfo, setUserData } = useContext(dataContext);
   const [listUser, setListUser] = useState([]);
   // const [selectedUser, setSelectedUser] = useState();
 
@@ -20,8 +20,8 @@ export default function Navigation() {
     setUserData(user);
     axios
       .post("http://localhost:5500/chat", {
-        _id: user._id,
-        _id: userInfo._id,
+        sender_id: user._id,
+        receved_id: userInfo._id,
       })
       .then((response) => {
         console.log(response);
