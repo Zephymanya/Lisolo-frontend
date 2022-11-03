@@ -2,14 +2,20 @@ import React from "react";
 import { BiLogOut } from "react-icons/bi";
 import { AiOutlineComment } from "react-icons/ai";
 import "../Css/connect.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import dataContext from "./dataContext";
 import { useNavigate } from "react-router-dom";
 //
 export default function Connecter() {
-  const { userData } = useContext(dataContext);
+  const { userData, setUserData } = useContext(dataContext);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setUserData(JSON.parse(localStorage.getItem("userData")));
+  }, []);
+  // console.log(userData);
+
   return (
     <div
       style={{
@@ -24,7 +30,7 @@ export default function Connecter() {
       }}
     >
       <img
-        src={userData.picture}
+        src={"//userData.picture"}
         alt=""
         style={{
           width: "20% !important",
@@ -33,6 +39,7 @@ export default function Connecter() {
           marginTop: "18% ",
         }}
       />
+      <p>{userData.nom} </p>
 
       <div
         className="contentMessagerie"
