@@ -28,10 +28,9 @@ export default function Login() {
         console.log("connexion avec succès");
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
-        //  setUserData(res.data.user)
         localStorage.setItem("userData", JSON.stringify(res.data.user));
         navigate("/chat");
-        // console.log(res.data.user);
+     
       })
       .catch((err) => {
         console.log("erreur de connexion");
