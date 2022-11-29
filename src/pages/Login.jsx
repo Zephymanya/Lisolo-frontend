@@ -54,30 +54,39 @@ export default function Login() {
           <h2>KABA LISOLO</h2> <img src={ico} alt="" className="icoMessage" />
           <p className="titre_connect">Connexion</p>
           <form action="">
-            <input
-              type="text"
-              placeholder="Email"
-              className="inputNom"
-              onChange={(e) => {
-                setEmail(e.target.value);
-                checkInputField(e, "email", setErrorEmail, setErrorPassword);
-              }}
-            />
+            <div>
+              <input
+                type="text"
+                placeholder="Email"
+                className="inputNom"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  checkInputField(e, "email", setErrorEmail, setErrorPassword);
+                }}
+              />
 
-            {errorEmail && <label htmlFor="">L'email est invalide</label>}
+              {errorEmail && <label htmlFor="">L'email est invalide</label>}
+            </div>
 
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              className="inputPassword"
-              onChange={(e) => {
-                setPassword(e.target.value);
-                checkInputField(e, "password", setErrorEmail, setErrorPassword);
-              }}
-            />
-            {errorPassword && (
-              <label htmlFor="">Verifiez votre mot de passe</label>
-            )}
+            <div>
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                className="inputPassword"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  checkInputField(
+                    e,
+                    "password",
+                    setErrorEmail,
+                    setErrorPassword
+                  );
+                }}
+              />
+              {errorPassword && (
+                <label htmlFor="">Verifiez votre mot de passe</label>
+              )}
+            </div>
 
             {loader ? <div className="loader"></div> : ""}
           </form>

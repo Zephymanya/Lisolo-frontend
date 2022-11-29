@@ -1,6 +1,12 @@
 import { emailRegex } from "./constants";
 
-export const checkInputField = (e, type, setErrorEmail, setErrorPassword) => {
+export const checkInputField = (
+  e,
+  type,
+  setErrorEmail,
+  setErrorPassword,
+  setNameError
+) => {
   const fieldContent = e.target.value;
   let isValid = true;
 
@@ -11,5 +17,8 @@ export const checkInputField = (e, type, setErrorEmail, setErrorPassword) => {
   } else if (type === "password") {
     if (fieldContent.length <= 6) setErrorPassword(true);
     else setErrorPassword(false);
+  } else if (type === "name") {
+    if (fieldContent.trim() <= 3) setNameError(true);
+    else setNameError(false);
   }
 };
