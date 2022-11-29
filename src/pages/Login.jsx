@@ -8,37 +8,41 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import dataContext from "../components/dataContext";
+import { checkInputField } from "../utils/checkFormInput";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // eslint-disable-next-line no-unused-vars
-  const { userData, setUserData } = useContext(dataContext);
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorPassword, setErrorPassword] = useState(false);
+  const [loader, setLoader] = useState(false);
+
+  const { myUser, setMyUser } = useContext(dataContext);
 
   const login = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5500/users/login", {
-        email,
-        password,
-      })
-      .then((res) => {
-        alert("Bienvenue");
-        console.log("connexion avec succès");
-        console.log(res.data.token);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userData", JSON.stringify(res.data.user));
-        navigate("/chat");
-     
-      })
-      .catch((err) => {
-        console.log("erreur de connexion");
-      });
+    console.log({ errorEmail, errorPassword });
+    if (!errorEmail || !errorPassword) {
+      setLoader(true);
+      axios
+        .post("http://localhost:5500/users/login", {
+          email,
+          password,
+        })
+        .then((res) => {
+          console.log("connexion avec succès");
+          setMyUser(res.data.user);
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userData", JSON.stringify(res.data.user));
+          navigate("/chat");
+        })
+        .catch((err) => {
+          console.log("erreur de connexion");
+        });
+    }
   };
-  // console.log(userData);
-  // console.log(email);
-  // console.log(password);
+
   return (
     <div className="formContenair">
       <div className="formContenair2">
@@ -49,25 +53,43 @@ export default function Login() {
           }}
         >
           <h2>KABA LISOLO</h2> <img src={ico} alt="" className="icoMessage" />
-          <p>Connexion</p>
+          <p className="titre_connect">Connexion</p>
           <form action="">
-            <input
-              type="text"
-              placeholder="Email"
-              className="inputNom"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Mot de passe"
-              className="inputPassword"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
+            <div>
+              <input
+                type="text"
+                placeholder="Email"
+                className="inputNom"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  checkInputField(e, "email", setErrorEmail, setErrorPassword);
+                }}
+              />
+
+              {errorEmail && <label htmlFor="">L'email est invalide</label>}
+            </div>
+
+            <div>
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                className="inputPassword"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  checkInputField(
+                    e,
+                    "password",
+                    setErrorEmail,
+                    setErrorPassword
+                  );
+                }}
+              />
+              {errorPassword && (
+                <label htmlFor="">Verifiez votre mot de passe</label>
+              )}
+            </div>
+
+            {loader ? <div className="loader"></div> : ""}
           </form>
           <NavLink to={"/inscription"}>
             <p style={{ marginTop: "5%" }}>J'ai pas de compte</p>

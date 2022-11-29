@@ -30,7 +30,7 @@ export default function Connecter() {
       }}
     >
       <img
-        src={"//userData.picture"}
+        src={"userData.picture"}
         alt=""
         style={{
           width: "20% !important",
