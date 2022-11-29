@@ -1,27 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import "./navigation.css";
 import { AiOutlineSearch } from "react-icons/ai";
-import usergirl from "../images/usergirl.jpeg";
 import { useState, useEffect } from "react";
 import dataContext from "./dataContext";
 import axios from "axios";
 
 export default function Navigation() {
+  // const socket = useRef();
+
   const {
     userData,
     findChat,
     userInfo,
     setUserInfo,
     setFindChat,
-    setAfficherMessage,
+    setUserOnline,
+    setGetChat,
+    avoirImage,
   } = useContext(dataContext);
-  const [listUser, setListUser] = useState([]);
 
-  const myuser = localStorage.getItem("userData");
+  const [listUser, setListUser] = useState([]);
+  
 
   console.log();
   const handleclick = (user) => {
     setUserInfo(user);
+    console.log(user);
     axios
       .post("http://localhost:5500/chat/", {
         senderId: userData.userId,
@@ -35,21 +39,23 @@ export default function Navigation() {
       });
   };
 
+  // useEffect Sockect
+  // *****************
+
   useEffect(() => {
     axios.get("http://localhost:5500/users/liste_sers").then((res) => {
       setListUser(res.data.user);
     });
-  }, [myuser]);
+  }, [userData]);
 
   useEffect(() => {
     axios
       .get(`http://localhost:5500/chat/find/${userData.userId}/${userInfo._id}`)
       .then((res) => {
         setFindChat(res.data._id);
+        setGetChat(res.data);
       });
   }, []);
-
-  console.log(findChat);
 
   return (
     <div className="contenairNavig">
@@ -66,7 +72,7 @@ export default function Navigation() {
               className="divImageTitre"
               onClick={() => handleclick(user)}
             >
-              <img src={usergirl} alt="" />
+              <img src={user.picture} alt="" className="image_user" />
               {/* user.picture */}
               <h4>{user.nom} </h4>
             </div>

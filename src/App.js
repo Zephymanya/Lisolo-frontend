@@ -14,7 +14,13 @@ function App() {
   const [userInfo, setUserInfo] = useState("");
   const [findChat, setFindChat] = useState("");
   const [afficherMessage, setAfficherMessage] = useState({});
-
+  const [userOnline, setUserOnline] = useState([]);
+  const [sendMessage, setSendMessage] = useState(null);
+  const [receiveMessage, setReceiveMessage] = useState(null);
+  const [getChat, setGetChat] = useState(null);
+  const [avoirImage, setAvoirImage] = useState("");
+  const [myUser, setMyUser] = useState("");
+  const [receivm, setReceivm] = useState("");
   useEffect(() => {
     axios
       .get(`http://localhost:5500/message/${findChat}`)
@@ -24,9 +30,8 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [userInfo._id]);
+  }, [userInfo._id,receivm]);
 
-  console.log(afficherMessage);
   return (
     <div>
       <dataContext.Provider
@@ -39,6 +44,20 @@ function App() {
           setAfficherMessage,
           findChat,
           setFindChat,
+          setUserOnline,
+          userOnline,
+          sendMessage,
+          setSendMessage,
+          receiveMessage,
+          setReceiveMessage,
+          getChat,
+          setGetChat,
+          avoirImage,
+          setAvoirImage,
+          myUser,
+          setMyUser,
+          receivm,
+          setReceivm,
         }}
       >
         <Router>

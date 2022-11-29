@@ -3,15 +3,18 @@ import "../Css/login.css";
 import girl from "../images/girl.png";
 import { NavLink } from "react-router-dom";
 import Axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import dataContext from "../components/dataContext";
 
 export default function Login() {
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = useState(false);
   const [picture, setPicture] = useState("");
+  const { avoirImage, setAvoirImage } = useContext(dataContext);
 
   const navigate = useNavigate();
   const ajouterUser = (e) => {
@@ -32,6 +35,25 @@ export default function Login() {
         console.log("erreur d'inscription");
       });
   };
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "Zephy-Image");
+    setLoading(true);
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dc5vehv0u/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    setAvoirImage(file.secure_url);
+    setLoading(false);
+    setPicture(avoirImage);
+  };
 
   return (
     <div className="formContenair">
@@ -44,6 +66,7 @@ export default function Login() {
         >
           <h2>KABA LISOLO</h2>
           <h2>Je m'inscris</h2>
+
           <form action="">
             <input
               type="text"
@@ -69,6 +92,12 @@ export default function Login() {
                 setPassword(e.target.value);
               }}
             />
+            <input
+              type="file"
+              className="inputPassword"
+              onChange={uploadImage}
+            />
+
             <NavLink to={"/chat"}>
               <button
                 style={{

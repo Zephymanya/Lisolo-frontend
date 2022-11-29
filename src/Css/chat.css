@@ -33,7 +33,9 @@ p {
   gap: -3%;
 }
 .image_content > img {
-  width: 60px !important;
+  margin-top: 5%;
+  width: 50px !important;
+  height: 50px !important;
   border-radius: 40px !important;
 }
 
@@ -143,4 +145,18 @@ p {
   background-color: rgba(0, 75, 225, 1);
   border-radius: 5px;
   margin-left: 2%;
+}
+.file {
+  margin-right: 4%;
+  margin-top: 3%;
+}
+#file {
+  opacity: 100%;
+  width: 50px;
+  position: absolute;
+}
+
+.messageImage {
+  width: 200px !important;
+  height: 200px !important;
 }
